@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <form action="{{ url_for('registering') }}" method=post>
+    <input  type=text name=username class=formin placeholder=username>
+    <br>
+    <input  type=text name=email class=formin placeholder=email>
+    <br>
+    <input  type=text name=phone class=formin placeholder=phone>
+    <br>
+    <input  type=password name=password class=formin placeholder=password>
+    <br>
+    <input  type=password name=passwordCheck class=formin placeholder=password>
+    <br><br>
+    <input  id="subButton" type=submit value=Register>
+  </form>
+
+{% endblock %}

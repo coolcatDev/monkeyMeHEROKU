@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+ {% for user in userList %}
+   
+   <div>
+   		<h3>{{ user.userName }}</h3>
+   </div>
+   <div>
+   		<p>{{ user.userEmail }}</p>
+   </div>
+   <div>
+   		<p>{{ user.userPhone }}</p>
+   </div>
+
+   {% for best in bestFriend %}
+       <div>
+        
+        {% if best.userIdB == session.user_id %}
+                
+              <p> Best friend: {{ best.userNameA }}</p>
+              </div>
+           
+        {% else %}
+              
+              <p> Best friend: {{ best.userNameB }}</p>
+              </div>
+          
+        {% endif %}         
+    {% endfor %}
+
+   <hr>
+  
+  {% else %}
+   <div>
+		No users
+   </div>
+  {% endfor %}
+{% endblock %}

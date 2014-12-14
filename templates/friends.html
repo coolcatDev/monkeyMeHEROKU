@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block body %}
+
+ 
+{% for best in bestFriend %}
+   
+		   <div>
+		   		<h2>Best friend is:</h2>
+				
+	{% if best.userIdB == session.user_id %}
+		   		
+		   		<h3>{{ best.userNameA }}</h3>
+		   </div>
+		   <hr>
+	{% else %}
+				<h3>{{ best.userNameB }}</h3>
+		   </div>
+		   <hr>
+	{% endif %}   	   	
+
+{% endfor %}
+
+
+
+
+<div id="innerContent">
+{% for friends in userList %}
+
+   		{% if friends.userIdB == session.user_id %}
+   	
+		   	<div class="contentUsers">
+		   		{{ friends.userNameA }}
+		   	</div>
+
+		   	<div class="contentButton">
+		   		<a href="{{ url_for('removeFriend', friendshipToRemove=friends.id, userToRemove=friends.userIdA) }}">
+		   			<img src="static/images/trashBlack.png" width="20px" height="20px" />
+		   		</a>
+		   	</div>
+
+		   	<div class="contentButton">
+			   	<a href="{{ url_for('addBestFriend', userToRequest=friends.userIdA, userToRequestName=friends.userNameA) }}">
+			   		<img id="star" src="static/images/starBlack.svg" width="20px" height="20px" />
+			   	</a>
+		   	</div>
+
+   		{% else %}
+	
+		   	<div class="contentUsers">
+		   		{{ friends.userNameB }}
+		   	</div>
+	
+			<div class="contentButton">
+				<a href="{{ url_for('removeFriend', friendshipToRemove=friends.id, userToRemove=friends.userIdB) }}">
+					<img src="static/images/trashBlack.png" width="20px" height="20px" />
+				</a>
+		 	</div>
+
+			<div class="contentButton">
+				<a href="{{ url_for('addBestFriend', userToRequest=friends.userIdB, userToRequestName=friends.userNameB) }}">
+					<img id="star" src="static/images/starBlack.svg" width="20px" height="20px" />
+				</a>
+			</div>
+
+
+		{% endif %} 
+  <br><br><br><br>
+
+{% else %}
+   <div>No friends</div>
+
+
+{% endfor %}
+
+</div>
+  {% endblock %}

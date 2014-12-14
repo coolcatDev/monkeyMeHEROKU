@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div id="innerContent">
+ {% for user in userList %}
+	    <div class="contentUsers">
+	   		{{ user.userName }}
+	    </div>
+	   
+	    <div class="contentButton">
+	   		<a href="{{ url_for('profile', profileId = user.id) }}">
+	   			<img src="static/images/copyBlack.png" width="20px" height="20px" />
+	   		</a>
+	   	</div>
+
+   	{% if user.id !=  session.user_id %}
+	   	<div class="contentButton">
+	  		<a href="{{ url_for('addFriend', userToAdd = user.id) }}">
+	  			<img src="static/images/addFriendBlack.png" width="20px" height="20px" />
+	  		</a>
+	  	</div>
+
+	{% endif %}
+
+   		<br><br><br><br>
+
+  	{% else %}
+	   	<div>
+	   		No users
+	   	</div>
+ {% endfor %}
+
+</div>
+  {% endblock %}

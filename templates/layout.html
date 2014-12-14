@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="static/css/style.css" />
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	
+<script type="text/javascript">
+	$(document).ready(function()
+			{
+				adapt();
+				
+			});
+
+	window.onresize = adapt;
+		function adapt(e)
+				{
+				var windowsize = $(window).width();
+				var windowH= $(window).height();
+					if (windowsize<800)
+						{							
+		    			$("#menu").hide();
+		    			$("#menuM").show();
+		    			$("#menuM").css('display', 'block');
+		    			$("#logo").css('margin-left', '30%');
+
+		    			$('#innerContent').css('padding-left', '10%')
+		    			$('#footer').css('background-color', 'yellow')	
+
+		    			//$("#menuM").show();
+
+		    			}else{
+		    					$("#menu").show();		
+		    					$("#menuM").hide();
+		    					$("#logo").css('margin-left', '15%');
+		    					$('#innerContent').css('padding-left', '20%')
+		    					$('#footer').css('background-color', 'black')	
+		    				 }
+		    	}   	
+	</script>
+</head>
+
+<body>
+	<div id="bar">
+		<div id="logo">
+			<img src="static/images/logo.png" width="180px" height="36px" />
+		</div>
+		
+		<div id="menu">
+			<div class="nav">
+				{% if not session.logged_in %}
+				    <a href="{{ url_for('login') }}">Login</a>
+				{% else %}
+				    <a href="{{ url_for('logout') }}">Logout</a>
+				{% endif %}
+			</div>
+			<div class="nav">
+				<a href="{{url_for('allList')}}">Users</a>
+			</div>
+			<div class="nav">
+				<a href="{{url_for('friendList')}}">Friends</a>
+			</div>
+			<div class="nav">
+				<a href="{{url_for('myProfile')}}">Profile</a>
+			</div>
+			
+		</div>
+				
+	</div>
+
+	
+
+	<div id="content" >
+
+
+		{% block body %}{% endblock %}
+
+	</div><br><br><br><br><br>
+	
+	
+
+	<div id="menuM" >
+			<div id="test" style=" margin-top:3px;">
+				<table width="60%" border="0" align="center">
+					<tr>
+					<td>
+						<a href="#">
+							{% if not session.logged_in %}
+					    		<a href="{{ url_for('login') }}">
+					    			<img src="static/images/key.png" width="32px" height="32px" />
+					    		</a>
+							{% else %}
+					    		<a href="{{ url_for('logout') }}">
+					    			<img src="static/images/lock.png" width="32px" height="32px" />
+					    		</a>
+							{% endif %}
+						</a>
+					</td>
+					<td>
+						<a href="{{url_for('allList')}}">
+							<img src="static/images/search.png" width="32px" height="32px" />
+						</a>
+					</td>
+					<td>
+						<a href="{{url_for('friendList')}}">
+							<img src="static/images/user.png" width="32px" height="32px" />
+						</a>
+					</td>
+					<td>
+						<a href="{{url_for('myProfile')}}">
+							<img src="static/images/copy.png" width="32px" height="32px" />
+					</a>
+					</td>
+					</tr>
+				</table>	
+			</div>
+	</div>
+
+	<div id="footer">
+		
+	</div>
+	
+</body>
+</html>

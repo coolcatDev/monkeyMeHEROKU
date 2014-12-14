@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+
+ {% for user in userList %}
+   
+   <div>
+   		<h3>{{ user.userName }}</h3>
+   </div>
+   <div>
+   		{{ user.userEmail }}
+   </div>
+   <div>
+   	{{ user.userPhone }}</div>
+   <hr>
+   <div style="float:right;">
+		<a href="{{ url_for('deleteAccount', userToDelete=user.id) }}">
+	   		<img id="delete" src="static/images/trashBlack.png" width="20px" height="20px" />
+		</a>
+   </div>
+
+  {% else %}
+	
+	<div>
+	   	No users
+	</div>
+
+  {% endfor %}
+  {% endblock %}

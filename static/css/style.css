@@ -1,0 +1,183 @@
+
+#menu a:link    {color: white; text-decoration: none;  }
+#menu a:visited {color:white !important; text-decoration: none !important; }
+#menu a:hover   {color:yellow !important; text-decoration: none !important; }
+
+#menuM a:link    {color: white !important; text-decoration: none !important;  }
+#menuM a:visited {color:white !important; text-decoration: none !important; }
+#menuM a:hover   {color:yellow !important; text-decoration: none !important; }
+
+
+
+#content{
+    	-moz-border-radius:0.7em;
+		-webkit-border-radius:0.7em;
+		border-radius:0.5 em; 
+		margin:0 auto;
+		padding:20px;
+		padding-bottom: 40px;
+		border-style:solid;
+		border-color:black ;		
+		font-family: corbel;
+		opacity:0.8;
+		width:80%; 
+		z-index:0; 
+		position:relative;  
+		height:auto; 
+		top:80px; 
+		background-color:white;
+
+ } 
+ 
+.contentButton
+{
+	height:40px; 
+	width:40px; 
+	border:2px 
+	solid black; 
+	float:left; 
+	vertical-align:middle; 
+	text-align:center; 
+	line-height: 50px; 
+	margin: 10px;
+}
+
+
+.contentUsers
+{
+	height:40px; 
+	width:38%; 
+	border:2px solid black; 
+	float:left; 
+	vertical-align: middle; 
+	text-align:center; 
+	line-height: 40px; 
+	margin: 10px;
+}
+
+
+#innerContent
+{
+	width:90%; 
+	margin:0 auto; 
+	padding-left: 20%
+}
+
+#menuM
+{
+	border-bottom: 5px white solid ;
+}
+
+ #subButton
+ {
+	font-family: corbel;
+    border:2px solid black;
+    border-radius: 0px; 
+    background-color:white;
+    height:30px;
+    margin-top:4px;
+    margin-right:4px; 
+    text-align: center;
+    width: 90%;
+    font-weight: bold;
+    font-size: 1em; 
+    display:block;
+	margin:0 auto;
+	cursor: pointer;
+ }
+
+
+ .formin
+{
+	font-weight: bold;
+	font-size: 1em; 
+    border:2px solid black;
+ 	width: 90%;
+    background-color:white;
+    height:40px;
+    margin-top:4px;
+    text-align: center; 
+	font-family: corbel;
+	display:block;
+	margin:0 auto;
+
+}
+
+
+#register
+{
+	height:40px; 
+	width:40px; 
+	border:2px solid black; 
+	vertical-align: middle; 
+	text-align:center; 
+	line-height: 50px; 
+	margin:0 auto;
+}
+
+
+#bar
+{
+	 z-index:1; 
+	 position:fixed; 
+	 top:0px; 
+	 left:0px; 
+	 width:100%; 
+	 height:70px;
+	 background-color:black; 
+}
+
+#logo
+{
+	 float:left; 
+	 margin-left:15%; 
+	 margin-top:18px;
+}
+	
+
+#menu
+{
+	 float:right; 
+	 width:40%; 
+	 height:45px; 
+	 overflow:hidden;
+	  margin-right:13%;
+	   margin-top:18px; 
+	   background-color:black; 
+	   font-family:corbel; 
+	   color:white;
+}	
+
+.nav
+{
+	padding-top:8px; 
+	float:left;
+	 margin-right:30px;
+
+}
+
+
+#footer
+{
+	 position:fixed; 
+	 font-family:corbel; 
+	  color:white;  
+	  width:100%; 
+	  height:7px; 
+	  bottom:0px; 
+	  left:0px;  
+	  background-color:yellow;
+}
+
+#menuM
+{
+	position:fixed;  
+	width:100%;
+	 height:45px; 
+	   display:none; 
+	   bottom:0px;
+	    left:0px; 
+	     background-color:black; 
+	     font-family:corbel; 
+	     color:white;
+}
