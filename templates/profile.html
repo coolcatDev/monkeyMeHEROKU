@@ -11,29 +11,11 @@
    </div>
    <div>
    		<p>{{ user.userPhone }}</p>
-   </div>
+   </div>         
 
-   {% for best in bestFriend %}
-       <div>
-        
-        {% if best.userIdB == session.user_id %}
-                
-              <p> Best friend: {{ best.userNameA }}</p>
-              </div>
-           
-        {% else %}
-              
-              <p> Best friend: {{ best.userNameB }}</p>
-              </div>
           
-        {% endif %}         
-    {% endfor %}
-
-   <hr>
+  <hr>
   
-  {% else %}
-   <div>
-		No users
-   </div>
-  {% endfor %}
+
+ {% endfor %}
 {% endblock %}

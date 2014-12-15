@@ -109,11 +109,11 @@ def profile(profileId):
   else: 
         profileID = profileId
         
-        bestFriend = db.session.query(bestFriends).filter((bestFriends.userIdA == profileID) | (bestFriends.userIdB == profileID)) 
+        bestFriend = db.session.query(bestFriends).filter((bestFriends.userIdA == profileID) | (bestFriends.userIdB == profileID)).first() 
 
-        userList = users.query.filter_by(id=profileID).all()
+        userList = users.query.filter_by(id=profileID)
         
-        return render_template('profile.html', userList=userList, bestFriend=bestFriend)
+        return render_template('profile.html', userList=userList, bestFriend=bestFriend, profileID=profileID)
 
 
 
