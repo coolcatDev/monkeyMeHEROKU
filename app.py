@@ -34,8 +34,15 @@ def index():
 
 
 
+
+
+
+
+@app.route('/friendList<int:page>', methods=['GET', 'POST'])
 @app.route('/friends')
-def friendList():
+def friendList(page=1):
+  
+
   if not session.get('logged_in'):
                 
                 return render_template('login.html')
@@ -44,7 +51,8 @@ def friendList():
                 
                 userID = session['user_id']
               
-                userList = db.session.query(friendships).filter((friendships.userIdA == userID) | (friendships.userIdB == userID)) 
+                #userList = db.session.query(friendships).filter((friendships.userIdA == userID) | (friendships.userIdB == userID))
+                userList = friendships.query.filter((friendships.userIdA == userID) | (friendships.userIdB == userID)).paginate(page, 3, False)
               
                 bestFriend = db.session.query(bestFriends).filter((bestFriends.userIdA == userID) | (bestFriends.userIdB == userID)) 
               
@@ -79,15 +87,16 @@ def logout():
     return render_template('login.html')
 
 
-
+@app.route('/allList<int:page>', methods=['GET', 'POST'])
 @app.route('/users')
-def allList():
+def allList(page=1):
+  
 
   if not session.get('logged_in'):
         return render_template('login.html')
    
   else:
-        userList = users.query.all()
+        userList = users.query.paginate(page, 5, False)
         return render_template('users.html', userList=userList)
         #query = session.query(users, friendships).join(friendships).filter(....)
 
@@ -317,6 +326,6 @@ def deleteAccount(userToDelete):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 

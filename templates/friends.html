@@ -23,54 +23,75 @@
 
 
 
+<div id="pagination">
+{% if userList.has_prev %}
+		<a href="{{ url_for('friendList', page=userList.prev_num) }}">Back</a>
+{% endif %} 
+
+{% if userList.has_next %}
+		<a href="{{ url_for('friendList', page=userList.next_num) }}">Next</a>
+{% endif %}
+</div>
+
+<div style="clear:both;"></div>
+
+
+
 <div id="innerContent">
-{% for friends in userList %}
+{% if userList.items %}
+	{% for friends in userList.items %}
 
-   		{% if friends.userIdB == session.user_id %}
-   	
-		   	<div class="contentUsers">
-		   		{{ friends.userNameA }}
-		   	</div>
+		   		{% if friends.userIdB == session.user_id %}
+		   	
+				   	<div class="contentUsers">
+				   		{{ friends.userNameA }}
+				   	</div>
 
-		   	<div class="contentButton">
-		   		<a href="{{ url_for('removeFriend', friendshipToRemove=friends.id, userToRemove=friends.userIdA) }}">
-		   			<img src="static/images/trashBlack.png" width="20px" height="20px" />
-		   		</a>
-		   	</div>
+				   	<div class="contentButton">
+				   		<a href="{{ url_for('removeFriend', friendshipToRemove=friends.id, userToRemove=friends.userIdA) }}">
+				   			<img src="static/images/trashBlack.png" width="20px" height="20px" />
+				   		</a>
+				   	</div>
 
-		   	<div class="contentButton">
-			   	<a href="{{ url_for('addBestFriend', userToRequest=friends.userIdA, userToRequestName=friends.userNameA) }}">
-			   		<img id="star" src="static/images/starBlack.svg" width="20px" height="20px" />
-			   	</a>
-		   	</div>
+				   	<div class="contentButton">
+					   	<a href="{{ url_for('addBestFriend', userToRequest=friends.userIdA, userToRequestName=friends.userNameA) }}">
+					   		<img id="star" src="static/images/starBlack.svg" width="20px" height="20px" />
+					   	</a>
+				   	</div>
 
-   		{% else %}
+		   		{% else %}
+			
+				   	<div class="contentUsers">
+				   		{{ friends.userNameB }}
+				   	</div>
+			
+					<div class="contentButton">
+						<a href="{{ url_for('removeFriend', friendshipToRemove=friends.id, userToRemove=friends.userIdB) }}">
+							<img src="static/images/trashBlack.png" width="20px" height="20px" />
+						</a>
+				 	</div>
+
+					<div class="contentButton">
+						<a href="{{ url_for('addBestFriend', userToRequest=friends.userIdB, userToRequestName=friends.userNameB) }}">
+							<img id="star" src="static/images/starBlack.svg" width="20px" height="20px" />
+						</a>
+					</div>
+
+
+				{% endif %} 
+
+		  			<br><br><br><br>
+
+
+
+
+
+    {% endfor %}{% else %}<div>No users</div>
+{% endif %} 
 	
-		   	<div class="contentUsers">
-		   		{{ friends.userNameB }}
-		   	</div>
-	
-			<div class="contentButton">
-				<a href="{{ url_for('removeFriend', friendshipToRemove=friends.id, userToRemove=friends.userIdB) }}">
-					<img src="static/images/trashBlack.png" width="20px" height="20px" />
-				</a>
-		 	</div>
-
-			<div class="contentButton">
-				<a href="{{ url_for('addBestFriend', userToRequest=friends.userIdB, userToRequestName=friends.userNameB) }}">
-					<img id="star" src="static/images/starBlack.svg" width="20px" height="20px" />
-				</a>
-			</div>
 
 
-		{% endif %} 
-  <br><br><br><br>
 
-{% else %}
-   <div>No friends</div>
-
-
-{% endfor %}
 
 </div>
   {% endblock %}

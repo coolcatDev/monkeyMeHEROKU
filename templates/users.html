@@ -1,34 +1,48 @@
 {% extends "layout.html" %}
 {% block body %}
 
+
+<div id="pagination">
+{% if userList.has_prev %}
+		<a href="{{ url_for('allList', page=userList.prev_num) }}">Back</a>
+{% endif %} 
+
+{% if userList.has_next %}
+		<a href="{{ url_for('allList', page=userList.next_num) }}">Next</a>
+{% endif %}
+</div>
+<div style="clear:both;"></div>
+
 <div id="innerContent">
- {% for user in userList %}
-	    <div class="contentUsers">
-	   		{{ user.userName }}
-	    </div>
-	   
-	    <div class="contentButton">
-	   		<a href="{{ url_for('profile', profileId = user.id) }}">
-	   			<img src="static/images/copyBlack.png" width="20px" height="20px" />
-	   		</a>
-	   	</div>
+{% if userList.items %}
+	 {% for user in userList.items %}
+		    <div class="contentUsers">
+		   		{{ user.userName }}
+		    </div>
+		   
+		    <div class="contentButton">
+		   		<a href="{{ url_for('profile', profileId = user.id) }}">
+		   			<img src="static/images/copyBlack.png" width="20px" height="20px" />
+		   		</a>
+		   	</div>
 
-   	{% if user.id !=  session.user_id %}
-	   	<div class="contentButton">
-	  		<a href="{{ url_for('addFriend', userToAdd = user.id) }}">
-	  			<img src="static/images/addFriendBlack.png" width="20px" height="20px" />
-	  		</a>
-	  	</div>
+	   	{% if user.id !=  session.user_id %}
+		   	<div class="contentButton">
+		  		<a href="{{ url_for('addFriend', userToAdd = user.id) }}">
+		  			<img src="static/images/addFriendBlack.png" width="20px" height="20px" />
+		  		</a>
+		  	</div>
 
-	{% endif %}
+		{% endif %}
 
-   		<br><br><br><br>
+	   		<br><br><br><br>
 
-  	{% else %}
-	   	<div>
-	   		No users
-	   	</div>
- {% endfor %}
+	  
+	 {% endfor %}{% else %}<div>No users</div>
+{% endif %}
+
+
+
 
 </div>
   {% endblock %}
